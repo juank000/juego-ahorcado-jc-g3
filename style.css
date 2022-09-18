@@ -1,0 +1,780 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(29, 28, 28);
+    font-family: 'Roboto Mono', monospace;
+}
+
+/*-------------------------------------------header logo title*/
+header {
+    position: relative;
+}
+
+header > .logo {
+    display: inline-flex;
+    width: 11vw;
+}
+
+img {
+    margin: 30px 0 0 90px;
+    height: 90%;
+    width: 90%;
+    object-fit: contain;
+}
+
+header > .title {
+    display: inline-flex;
+    font-size: 32px;
+    color: rgb(235, 235, 245);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    justify-content: center;
+}
+
+/*-----------------------------------------------------Main*/
+#container{
+    background-color: rgb(20, 20, 20);
+    border-radius: 10px;
+    min-height: 85vh;
+    
+}
+
+/*Button StartGame*/
+#container #btn-start-game {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: rgb(151, 248, 86);
+    color: black;
+    border: 2px solid rgb(247, 243, 243);
+    border-radius: 5px;
+    padding: 9px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/*counter*/
+.attempts {
+    color: rgb(204, 245, 158);
+    padding: 5px;
+    font-size: 20px;
+    margin-left: 4px;
+}
+
+/*0 - max-num*/
+.mistake, .max-wrong-num{
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(90, 128, 82);
+    padding: 5px;
+}
+
+/*Button Reset*/
+.btn-reset{
+    background-color: rgb(151, 248, 86);
+    color: black;
+    border: 2px solid rgb(247, 243, 243);
+    border-radius: 5px;
+    padding: 9px;
+    margin-left: 1%;
+    font-size: 17px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.btn-reset:active {
+    background-color: rgb(201, 241, 173);
+}
+
+/*dropdown menu*/
+.menu-q-letter {
+    display: none;
+    position: absolute;
+    background-color: rgb(42, 44, 42);
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    cursor: pointer;
+}
+
+.menu-q-letter ul li {
+    color: rgb(205, 233, 195);
+    padding: 10px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.menu-q-letter ul li:hover {
+    background-color: rgb(108, 110, 105);
+    color: rgb(56, 58, 56);
+}
+
+.menu-q-letter ul li:active {
+    color: greenyellow;
+}
+  
+.show {display: block;}
+
+/*block of adding*/
+.elements {
+    display: inline-flex;
+    float: right;
+}
+
+.adding-word{
+    border: none;
+}
+
+#add-word, #add-hint, .btn-add-word {
+    display: inline-flex;
+    padding: 10px;
+    text-align: center;
+}
+
+#add-word:focus, #add-hint:focus {
+    background-color: rgb(45, 46, 45);
+    color: rgb(163, 253, 104);
+    font-weight: bold;
+    border-radius: 19px;
+}
+
+.btn-add-word {
+    background-color: rgb(151, 248, 86);
+    color: black;
+    border: 2px solid rgb(247, 243, 243);
+    border-radius: 5px;
+    text-align: center;
+    font-size: 17px;
+    cursor: pointer;
+    margin-right: 4px;
+}
+
+.btn-add-word:active {
+    border: none;
+}
+
+/*-----------------------------------------------------*/
+.body-drawing{
+    display: none;
+    height: 25vh;
+    width: 15vw;
+    padding: 10px;
+    margin: 40px auto 15px auto;
+    align-items: center;
+    position: relative;
+}
+/*------------------------------------------------------*/
+.body-drawing > span:nth-child(1),
+.body-drawing > span:nth-child(2),
+.body-drawing > span:nth-child(3),
+.body-drawing > span:nth-child(4),
+.body-drawing > span:nth-child(6),
+.body-drawing > span:nth-child(7),
+.body-drawing > span:nth-child(8){
+    height: 4px;
+    background-color: rgb(80, 78, 78);
+    position: absolute;
+    left: 25px;
+}
+/*--------------------------------------------------------*/
+
+/*base lower*/
+.body-drawing > span:nth-child(1){
+    left: 25px;
+    top: 195px;
+    width: 90px;
+}
+/*pole*/
+.body-drawing > span:nth-child(2){
+    top: 45px;
+    width: 4px;
+    height: 150px;
+}
+/*base upper*/
+.body-drawing > span:nth-child(3){
+    width: 70px;
+    top: 45px;
+}
+/*base angle*/
+.body-drawing span:nth-child(3)::before{
+    content: "";
+    height: 30px;
+    width: 4px;
+    background-color: rgb(80, 78, 78);
+    position: absolute;
+    margin-left: 10px;
+    margin-top: -4px;
+    transform: rotate(45deg);
+    border-radius: 30px;
+}
+/*base hanging (rope)*/
+.body-drawing > span:nth-child(4){
+    top: 47px;
+    left: 90px;
+    width: 4px;
+    height: 19px;
+}
+/*head*/
+.body-drawing > span:nth-child(5){
+    width: 34px;
+    height: 34px;
+    background-color: rgba(116, 114, 112, 0.856);
+    border: 2px solid rgb(160, 156, 156);
+    border-radius: 100%;
+    position: absolute;
+    top: 65px;
+    left: 75px;
+}
+/*upper-body*/
+.body-drawing > span:nth-child(6){
+    height: 50px;
+    width: 4px;
+    top: 99px;
+    left: 90px;
+}
+/*arms*/
+.body-drawing > span:nth-child(7),
+.body-drawing > span:nth-child(8){
+    height: 25px;
+    width: 4px;
+    left: 82px;
+    top: 105px;
+    transform: rotate(45deg);
+}
+.body-drawing > span:nth-child(8){
+    transform: rotate(-45deg);
+    left: 98px;
+}
+/*legs*/
+.leg-one, .leg-two{
+    background-color: rgb(80, 78, 78);
+    height: 29px;
+    width: 4px;
+    position: absolute;
+    left: 81px;
+    top: 140px;
+    transform: rotate(45deg);
+}
+.leg-two{
+    transform: rotate(-45deg);
+    left: 99px;
+}
+/*-----------------------------------------------*/
+
+/*Words div*/
+.word-guessing{
+    display: none;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+}
+
+.word-guessing > p{
+    flex:100%;
+    font-size: 20px;
+    color: rgb(146, 211, 137);
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+/*word-spotlight*/
+.word-guessing > span:nth-child(2){
+    font-size: 25px;
+    margin: 10px auto;
+    padding: 12px;   
+    white-space: nowrap;
+    font-weight: 500;
+    background-color: rgb(51, 50, 50);
+    color: rgb(82, 236, 43);
+    border: 2px solid rgb(121, 119, 119);
+    border-radius:7px;
+}
+
+/*-----------------------------------------------*/
+
+/*PopUp Hint*/
+.hint-word {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: rgb(127, 231, 114);
+    text-shadow: 1px 1px 5px rgb(199, 243, 199);
+    padding: 1px 2px 4px 1px;
+}
+
+.hint-word:hover {
+    /*border: 1px solid rgb(242, 247, 244);
+    background-color: rgb(173, 247, 150);
+    border-radius: 29%;*/
+    color: rgb(68, 71, 67);
+    text-shadow: none;
+}
+
+.hint-word .hint-text {
+    visibility: hidden;
+    font-size: 17px;
+    width: 250px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 2px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -14em;
+}
+
+.hint-text {
+    text-shadow: none;
+}
+
+/* Popup arrow */
+.hint-word .hint-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /*when user clicks on the popup container (hide and show the popup)*/
+  .hint-word .showHint {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+  }
+  
+  /*add animation (fade in the popup)*/
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+
+/*-----------------------------------------------*/
+
+/*Keyboard box*/
+.keyboard{
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5em;
+    max-width: 30vw;
+    margin: 25px auto;
+    padding: 7px 5px;
+    border-radius: 17px;
+    /*box-shadow: 1px 11px 25px rgb(122, 122, 120) inset,
+                2px 4px 11px rgb(83, 85, 85);*/
+    box-shadow: -2px -2px 4px rgb(27, 27, 25),
+                2px 2px 4px rgb(6, 7, 7);
+}
+.keyboard-btns{
+    all: unset;
+    width: 20px;
+    height: 23px;
+    margin-left: 5px;
+    background-color: rgb(20, 20, 20);
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    border: 1px solid rgb(223, 250, 174);
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.head, .upper-body, .arm-one, .arm-two, .leg-one, .leg-two {
+    display: none;
+}
+
+/*PopUp Alert*/
+.popup-alert{
+    width: 350px;
+    height: 200px;
+    background-color: rgb(59, 57, 57);
+    color: rgb(163, 157, 157);
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    display: none;
+}
+
+.alert-mssg{
+    position: absolute;
+    width: 90%;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+    text-align: center;
+}
+
+.popup-alert > .btn-alert{
+    all: unset;
+    padding: 10px;
+    width: 100px;
+    background-color: rgb(151, 248, 86);
+    color: rgb(51, 51, 49);
+    border-radius: 5px;
+    position: absolute;
+    top: 79%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border: 2px solid black;
+}
+
+/*PopUp Result*/
+.result{
+    width: 400px;
+    height: 270px;
+    background-color: rgb(59, 57, 57);
+    color: rgb(163, 157, 157);
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    display: none;
+}
+
+.result-mssg{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+}
+
+.result > span{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    font-size: 17px;
+}
+
+.result > .btn-start-over{
+    all: unset;
+    padding: 10px;
+    width: 200px;
+    background-color: rgb(151, 248, 86);
+    color: rgb(51, 51, 49);
+    border-radius: 5px;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border: 2px solid black;
+}
+
+.result-answer{
+    font-weight: bold;
+}
+
+/*-------------------------------------------Footer*/
+footer {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.img-foot {
+    margin: 4px 42%;
+    width: 14%;
+    text-align: center;
+
+}
+footer :nth-child(2) {
+    font-size: 17px;
+    margin: 1px 30%;
+    width: 40%;
+    color: rgb(92, 94, 89);
+    text-align: center;
+}
+
+
+/*------------------------------------------------*/
+                /*Responsive*/
+
+/*--------------------------------------------------*/ /*small devices*/
+@media screen and (max-width:480px) {
+    /*----------Header----------*/
+    header > .logo {
+        width: 7vh;
+    }
+
+    img {
+        margin: auto 2px auto 5px;
+        padding: 2px;
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+    
+    header > .title {
+        text-align: center;
+        margin-left: 4p;
+        font-size: 17px;
+    }
+    
+    /*counter*/
+    .attempts {
+        padding: 4px;
+        font-size: 15px;
+    }
+    
+    /*0 - max-num*/
+    .mistake, .max-wrong-num{
+        padding: 4px;
+        font-size: 15px;
+    }
+    
+    /*Button Reset*/
+    .btn-reset{
+        padding: 4px;
+        font-size: 15px;
+    }
+    
+    .elements{
+        margin: 4px 4px 10px 4px;
+    }
+    
+    #add-word, #add-hint, .btn-add-word {
+        padding: 6px;
+    }
+
+    #add-word, #add-hint {
+        font-size: 14px;
+    }
+
+    .btn-add-word {
+        font-size: 15px;
+    }
+
+    /*body drawing*/
+    .body-drawing{
+        height: 30vh;
+        width: 40vw;
+        margin: 10px auto 5px 25%;
+    }
+
+    /*words div*/
+    .word-guessing > p{
+        font-size: 17px;
+        padding-top: 5px;
+        padding-bottom: 10px;
+    }
+
+    .word-guessing > span:nth-child(2){
+        font-size: 19px;
+        margin: 7px auto;
+        padding: 10px;
+    }
+    
+    /*Keyboard box*/
+    .keyboard{
+        max-width: 90vw;
+    }
+    
+    .keyboard-btns{
+        width: 17px;
+        height: 19px;
+        margin-left: 4px;
+        padding: 4px;
+        font-size: 11px;
+    }
+
+    /*footer*/
+    footer :nth-child(2){
+        font-size: 14px;
+    }   
+    
+}
+
+/*--------------------------------------------------*/ /*medium devices*/
+@media (min-width:480.5px) and (max-width: 770px) {
+    header > .logo {
+        width: 10vh;
+    }
+
+    img {
+        margin: auto 5px auto 9px;
+        padding: 2px;
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+    
+    header > .title {
+        text-align: center;
+        margin-left: 7px;
+        font-size: 22px;
+    } 
+
+    /*counter*/
+    .attempts {
+        padding: 4px;
+        font-size: 17px;
+    }
+    
+    /*0 - max-num*/
+    .mistake, .max-wrong-num{
+        padding: 4px;
+        font-size: 17px;
+    }
+    
+    /*Button Reset*/
+    .btn-reset{
+        padding: 4px;
+        font-size: 17px;
+    }
+
+    /*Section*/
+    #add-word, #add-hint, .btn-add-word {
+        padding: 7px;
+    }
+
+    .btn-add-word {
+        font-size: 17px;
+    }
+    
+    /*body drawing*/
+    .body-drawing{
+        height: 25vh;
+        width: 30vw;
+        margin: 30px auto 5px 30%;
+    }
+
+    /*words div*/
+    .word-guessing p{
+        font-size: 19px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .word-guessing{
+        height: 60px;
+    }
+
+    /**/
+    .word-guessing > span:nth-child(2){
+        font-size: 17px;
+        padding: 14px;
+        top: 17px;
+    }
+
+    /*Keyboard box*/
+    .keyboard{
+        max-width: 75vw;
+        margin: 125px auto 15px;
+    }
+    
+    .keyboard-btns{
+        width: 17px;
+        height: 19px;
+        margin-left: 4px;
+        padding: 4px;
+        font-size: 11px;
+    }
+
+    /*footer*/
+    footer :nth-child(2){
+        font-size: 14px;
+    }   
+}
+
+/*--------------------------------------------------*/ /*Other settings*/
+@media (min-width:771px) and (max-width:950px) {
+    .keyboard {
+        max-width: 45vw;
+    }
+}
+@media screen and (max-width:926px) {
+    .elements{
+        float: left;
+        margin: 10px 4px;
+    }
+}
+@media (min-width:701px) and (max-width:945.5px) {
+    /*body drawing*/
+    .body-drawing{
+        margin-top: 70px;
+    }
+}
+@media screen and (max-width:540px) {
+    .menu-q-letter ul li {
+        display: block;
+    }
+}
+@media screen and (max-width:346px) {
+    header > .title {
+        font-size: 15px;
+    }
+}
+
+/*--------------------------------------------------*/ /*Height*/
+
+@media screen and (max-height:712px) {
+    /*base lower*/
+    .body-drawing > span:nth-child(1){
+        top: 165px;
+    }
+    /*pole*/
+    .body-drawing > span:nth-child(2){
+        top: 19px;
+        width: 4px;
+        height: 150px;
+    }
+    /*base upper*/
+    .body-drawing > span:nth-child(3){
+        top: 19px;
+    }
+
+    /*base hanging (rope)*/
+    .body-drawing > span:nth-child(4){
+        top: 19px;
+    }
+    /*head*/
+    .body-drawing > span:nth-child(5){
+        top: 35px;
+    }
+    /*upper-body*/
+    .body-drawing > span:nth-child(6){
+        top: 69px;
+    }
+    /*arms*/
+    .body-drawing > span:nth-child(7),
+    .body-drawing > span:nth-child(8){
+        top: 75px;
+    }
+    /*legs*/
+    .leg-one, .leg-two{
+        top: 110px;
+    }   
+}

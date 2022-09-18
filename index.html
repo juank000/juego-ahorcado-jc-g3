@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Juego del Ahorcado - Hangman Game" />
+    <meta name="keywords" content="juego, ahorcado, js" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <title>Juego del Ahorcado</title>
+    <link rel="icon" type="image/x-icon" href="imgs/question-mark.ico">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="imgs/logo_one.png" alt="Logo de Alura Oracle ONE">
+        </div>
+
+        <h1 class="title">Juego del Ahorcado</h1>
+    </header>
+
+    <main id="container">
+
+        <button id="btn-start-game" onclick="startGame()">Iniciar</button>
+       
+        <span class="attempts">
+            Intentos: <span class="mistake"> 0 </span> de <span class="max-wrong-num"></span>
+        </span>
+
+        <button class="btn-reset" id="resetBtn" onclick="btnReset()">Cantidad de Letras</button>
+        <div class="menu-q-letter" id="DropdownLetters">
+            <ul id="DropdownOptions">
+                <li class="option" onclick="opt1()">Entre 3 y 5</li>
+                <li class="option" onclick="opt2()">Entre 6 y 10</li>
+                <li class="option" onclick="opt3()">Entre 11 y 15</li>
+                <li class="option" onclick="opt4()">Aleatorio</li>
+            </ul>
+        </div>
+    
+        <div class="elements">               
+            <section class="adding-word">
+                <input type="text" id="add-word" placeholder="Nueva Palabra">
+                <input type="text" id="add-hint" placeholder="Nueva Pista">
+                <button class="btn-add-word" onclick="btnAddWord()">Agregar</button>
+            </section>
+        </div>
+        
+        <div class="body-drawing">
+            <span class="base"></span>
+            <span class="pole"></span>
+            <span></span>
+            <span></span>
+            <span class="head"></span>
+            <span class="upper-body"></span>
+            <span class="arm-one"></span>
+            <span class="arm-two"></span>
+            <span class="leg-one"></span>
+            <span class="leg-two"></span>
+        </div>
+
+        <div class="word-guessing">
+            <p>Adivina la palabra <span class="hint-word" id="word-hint" onclick="btnHint()">&#8634<span class="hint-text" id="HintPopup">?</span></span></p>
+            <span class="word-spotlight"></span>
+        </div>
+
+        <div class="keyboard">
+            <!--keyboard buttons-->
+        </div>
+
+        <div class="popup-alert">
+            <h1 class="alert-mssg">""</h1>
+            <button class="btn-alert" onclick="btnAlert()">Aceptar</button>
+        </div>
+        
+        <div class="result">
+            <h1 class="result-mssg">""</h1>
+            <span>La palabra era: <span class="result-answer">?</span></span>
+            <button class="btn-start-over" onclick="btnStartOver()">Jugar de Nuevo</button>
+        </div>
+        
+    </main>
+
+    <footer>
+        <div class="logo-foot">
+            <img class="img-foot" src="imgs/logo_alura.png" alt="Logo de Alura Oracle ONE">
+        </div>
+	<h4>&copy @juanc</h4>
+    </footer>
+
+    <script src="words.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+
+</body>
+</html>
